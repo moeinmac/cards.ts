@@ -1,0 +1,30 @@
+{
+  "name": "cards.ts",
+  "version": "1.0.0",
+  "description": "the most complete deck of cards package you need",
+  "main": "src/index.ts",
+  "keywords": [
+    "cards.ts",
+    "deck of cards",
+    "cards",
+    "playing cards"
+  ],
+  "license": "ISC",
+  "author": "Moein Ghasemi",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/moeinmac/cards.ts.git"
+  },
+  "scripts": {
+    "dev": "node --watch src/index.ts",
+    "start": "node src/index.ts",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage"
+  },
+  "bugs": {
+    "url": "https://github.com/moeinmac/cards.ts/issues"
+  },
+  "homepage": "https://github.com/moeinmac/cards.ts#readme"
+}
