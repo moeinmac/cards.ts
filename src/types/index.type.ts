@@ -1,4 +1,4 @@
-export type CardCode =
+export type Code =
   | "AS"
   | "2S"
   | "3S"
@@ -52,6 +52,12 @@ export type CardCode =
   | "QH"
   | "KH";
 
-export type CardSuit = "HEART" | "DIAMOND" | "CLUBS" | "SPADES";
+export type Suit = "HEART" | "DIAMOND" | "CLUBS" | "SPADES";
 
-export type CardValue = "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" | "10" | "A" | "J" | "Q" | "K" | "X";
+export type Value = "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" | "10" | "A" | "J" | "Q" | "K" | "X";
+
+export type Card = {
+  code: Code;
+  suit: Suit;
+  value: Value;
+};
