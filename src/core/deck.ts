@@ -20,6 +20,7 @@ class Deck {
         : this.jokerEnable
         ? CARDS_AND_JOKERS
         : CARDS;
+    this.cards = input && input?.shuffled ? this.shuffleCardsHelper({ justRemaining: false, randomChance: 0.5 }) : this.cards;
     this.remainingCards = this.cards;
   }
   info() {
@@ -43,6 +44,13 @@ class Deck {
     return remainingCards;
   }
 
+  private shuffleCardsHelper(input: Required<ShuffleInput>) {
+    const shuffledDeck = input.justRemaining
+      ? this.remainingCards.sort(() => input.randomChance - Math.random())
+      : this.cards.sort(() => input.randomChance - Math.random());
+    return shuffledDeck;
+  }
+
   listCards(justRemaining?: boolean) {
     return this.listCardHelper(justRemaining ? this.remainingCards : this.cards);
   }
@@ -50,11 +58,7 @@ class Deck {
   shuffle(input?: ShuffleInput): ListCardReturn {
     const justRemaining = input && input?.justRemaining ? input.justRemaining : false;
     const randomChance = input && input?.randomChance ? input.randomChance : 0.5;
-    const shuffledDeck = justRemaining
-      ? this.remainingCards.sort(() => randomChance - Math.random())
-      : this.cards.sort(() => randomChance - Math.random());
-
-    this.cards = shuffledDeck;
+    this.cards = this.shuffleCardsHelper({ justRemaining, randomChance });
     this.remaining = this.cards.length;
     return {
       cards: this.listCards(justRemaining),
@@ -88,15 +92,14 @@ class Deck {
       drawnCards.push(theCard);
       this.remaining--;
     }
+    return {
+      status: "success",
+      cards: this.listCardHelper(drawnCards),
+      remaining: this.remaining,
+      shuffled: false,
+    };
   }
 }
 
+export { Deck };
 export default Deck;
-
-const deck1 = new Deck({ cards: ["0C", "0D"], jokerEnable: true });
-
-// console.log(deck1.listCards());
-
-// deck1.shuffle();
-
-// console.log(deck1.listCards());

@@ -1,10 +1,11 @@
 export type DeckInput = {
   jokerEnable?: true;
   cards?: Code[];
+  shuffled?: boolean;
 };
 
 export type ShuffleInput = {
-  justRemaining: true;
+  justRemaining?: boolean;
   randomChance?: number;
 };
 
