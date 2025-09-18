@@ -1,3 +1,8 @@
+export type DeckInput = {
+  jokerEnable?: true;
+  cards?: Code[];
+};
+
 export type Code =
   | "AS"
   | "2S"
@@ -52,7 +57,9 @@ export type Code =
   | "QH"
   | "KH";
 
-export type Suit = "HEART" | "DIAMOND" | "CLUBS" | "SPADES";
+export type JokerCode = "1X" | "2X";
+
+export type Suit = "HEARTS" | "DIAMONDS" | "CLUBS" | "SPADES" | "JOKER";
 
 export type Value = "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" | "10" | "A" | "J" | "Q" | "K" | "X";
 
@@ -60,4 +67,7 @@ export type Card = {
   code: Code;
   suit: Suit;
   value: Value;
+  valueLong: string;
 };
+
+export type AllCode = Code | JokerCode;
