@@ -3,6 +3,31 @@ export type DeckInput = {
   cards?: Code[];
 };
 
+export type ShuffleInput = {
+  justRemaining: true;
+  randomChance?: number;
+};
+
+export type DrawInput = {
+  count: number;
+  mode: "random" | "top" | "bottom";
+};
+
+type ListCardSuccess = {
+  status: "success";
+  cards: Card[];
+  remaining: number;
+  shuffled: boolean;
+};
+
+type ListCardError = {
+  cards: [];
+  status: "error";
+  message: string;
+};
+
+export type ListCardReturn = ListCardSuccess | ListCardError;
+
 export type Code =
   | "AS"
   | "2S"

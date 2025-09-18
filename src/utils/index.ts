@@ -7,3 +7,5 @@ export const cardValidity = (cards: Code[]) => {
   if (!allCardsValid) throw new Error("Your Cards Are Not Valid (valid choices are in type `Code`)");
   return allCardsValid;
 };
+
+export const randomChoice = (to: number, from: number = 0) => Math.floor(Math.random() * to - from + from);
