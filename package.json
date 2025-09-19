@@ -1,7 +1,7 @@
 {
   "name": "cards.ts",
   "version": "1.0.0",
-  "description": "the most complete deck of cards package you need",
+  "description": "the most complete deck of cards package you ever need",
   "main": "src/index.ts",
   "keywords": [
     "cards.ts",
