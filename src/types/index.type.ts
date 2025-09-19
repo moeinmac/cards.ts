@@ -14,6 +14,10 @@ export type DrawInput = {
   mode: "random" | "top" | "bottom";
 };
 
+export type ReturnInput = {
+  cards: Code[];
+};
+
 type ListCardSuccess = {
   status: "success";
   cards: Card[];
@@ -22,7 +26,7 @@ type ListCardSuccess = {
 };
 
 type ListCardError = {
-  cards: [];
+  cards: [] | string[];
   status: "error";
   message: string;
 };

@@ -1,5 +1,5 @@
 import { CARDS, CARDS_AND_JOKERS, JOKERS, SUITS, VALUES } from "../constants/index.ts";
-import type { AllCode, Card, Code, DeckInput, DrawInput, ListCardReturn, ShuffleInput } from "../types/index.type.ts";
+import type { AllCode, Card, Code, DeckInput, DrawInput, ListCardReturn, ReturnInput, ShuffleInput } from "../types/index.type.ts";
 import { cardValidity, randomChoice } from "../utils/index.ts";
 
 class Deck {
@@ -96,6 +96,37 @@ class Deck {
       status: "success",
       cards: this.listCardHelper(drawnCards),
       remaining: this.remaining,
+      shuffled: false,
+    };
+  }
+  returnCard({ cards }: ReturnInput): ListCardReturn {
+    if (!cards || cards.length === 0)
+      return {
+        cards: [],
+        status: "error",
+        message: "pass some cards for returning to the deck.",
+      };
+
+    cardValidity(cards);
+    const remainingCardsSet = new Set(this.remainingCards);
+    const cardsSet = new Set(this.cards);
+    const errorCards: string[] = [];
+    cards.forEach((c) => {
+      if (!remainingCardsSet.has(c) && cardsSet.has(c)) remainingCardsSet.add(c);
+      else return errorCards.push(c);
+    });
+    if (errorCards.length > 0)
+      return {
+        status: "error",
+        message: "You cannot return these cards to the deck because they have not yet been drawn or were not in the initial deck.",
+        cards: errorCards,
+      };
+    this.remainingCards = Array.from(remainingCardsSet);
+    this.remaining = remainingCardsSet.size;
+    return {
+      status: "success",
+      remaining: this.remaining,
+      cards: [],
       shuffled: false,
     };
   }

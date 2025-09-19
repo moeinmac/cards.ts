@@ -33,7 +33,7 @@ For development (if cloning the repo):
 
 ```bash
 npm install
-npm run build
+npm run dev
 ```
 
 ## Quick Start
