@@ -1,4 +1,4 @@
-import { CARDS, CARDS_AND_JOKERS, JOKERS, SUITS, VALUES } from "../constants/index.ts";
+import { CARDS, CARDS_AND_JOKERS, EMOJIS, JOKERS, SUITS, VALUES } from "../constants/index.ts";
 import type { AllCode, Card, Code, DeckInput, DrawInput, ListCardReturn, ReturnInput, ShuffleInput } from "../types/index.type.ts";
 import { cardValidity, randomChoice } from "../utils/index.ts";
 
@@ -39,6 +39,7 @@ class Deck {
         suit: SUITS[cardSuit],
         value: cardValue,
         valueLong: cardValue in VALUES ? VALUES[cardValue] : cardValue,
+        emoji: EMOJIS[cardSuit],
       } as Card;
     });
     return remainingCards;

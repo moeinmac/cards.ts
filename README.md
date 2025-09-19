@@ -12,6 +12,7 @@ A lightweight, type-safe TypeScript library for simulating a standard deck of pl
 - **Shuffling**: Randomize the entire deck or just remaining cards with customizable randomness.
 - **Drawing Modes**: Draw from the top, bottom, or randomly, with support for multiple cards.
 - **Deck Info & Listing**: Track creation time, remaining cards, and list cards in a human-readable format.
+- **Return cards to deck** : return drawn cards to the deck.
 - **Type Safety**: Fully typed with TypeScript, including union types for card codes and detailed card objects.
 - **Zero Dependencies**: Lightweight and pure TypeScript—no external libraries required.
 
@@ -107,8 +108,6 @@ deck.shuffle({ justRemaining: true, randomChance: 0.8 });
 Draw one or more cards in different modes:
 
 ```typescript
-import { type DrawInput } from "cards.ts";
-
 const deck = new Deck({ shuffled: true });
 
 // Draw 1 card randomly
@@ -158,6 +157,30 @@ const info = deck.info();
 }
 ```
 
+### Return Cards
+
+return drawn cards to the deck
+
+```typescript
+const cards = deck.returnCard({cards : ["AD" , "2H"]});
+
+
+// Returns:
+{
+  status: "success",
+  remaining: 34, // After returning cards
+  shuffled : false,
+  cards : []
+}
+
+const cards = deck.returnCard({cards : ["AD" , "XX" ]});
+// {
+//   status: 'error',
+//   message: 'You cannot return these cards to the deck because they have not yet  been drawn or were not in the initial deck.',
+//   cards: []
+// }
+```
+
 ## API Reference
 
 ### `Deck` Class
@@ -205,6 +228,14 @@ Returns deck metadata:
   - `input.mode?`: `'random' | 'top' | 'bottom'` (default: `'random'`).
 
 - **Returns**: `ListCardReturn` — Success with drawn cards (removes from deck) or error.
+
+#### `returnCard(input?: ReturnInput): ListCardReturn`
+
+- **Parameters**:
+
+  - `input.cards`: `Code[]` — cards you wants to return to the deck.
+
+- **Returns**: `ListCardReturn` — Success or error with proper messages.
 
 ### Types
 

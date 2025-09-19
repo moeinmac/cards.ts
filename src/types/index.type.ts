@@ -98,6 +98,7 @@ export type Card = {
   suit: Suit;
   value: Value;
   valueLong: string;
+  emoji: string;
 };
 
 export type AllCode = Code | JokerCode;

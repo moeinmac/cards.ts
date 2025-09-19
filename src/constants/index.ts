@@ -66,3 +66,11 @@ export const SUITS: Record<string, Suit> = {
   X: "JOKER",
 };
 export const VALUES = { A: "ACE", J: "JACK", Q: "QUEEN", K: "KING", "0": "10", X: "JOKER" };
+
+export const EMOJIS: Record<string, string> = {
+  S: "♠️",
+  D: "♦️",
+  H: "♥️",
+  C: "♣️",
+  X: "🃏",
+};
